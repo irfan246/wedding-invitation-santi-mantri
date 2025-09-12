@@ -424,10 +424,8 @@ export default function App() {
           </div>
         </div>
 
-        <div className="h-[25rem] w-full bg-center flex flex-col items-center justify-center px-4 bg-[#e6cbba]">
-          <h2 className="text-[#6e4f40] text-[2.4rem] mb-[0.6rem]">Wedding gift</h2>
-          <p className="text-[#6e4f40] text-[14px] mb-[1.4rem]" style={{ fontWeight: '600' }}>Bagi bapak/ibu/saudara/i yang ingin mengirimkan hadiah<br/>pernikahan dapat melalui nomer rekening di bawah ini</p>
-          <div className="w-[22.2rem] h-[14rem]" style={{ backgroundImage: `url(${card})` }}>
+        <div className="h-[20rem] w-full bg-center flex flex-col items-center justify-center px-4 bg-[#e6cbba]">
+          <div className="w-[22.2rem] h-[14.2rem]" style={{ backgroundImage: `url(${card})` }}>
             <img src={bni} alt="" width={100} className="mt-[1.5rem] ml-[14rem]" />
             <div className="mt-[5.5rem] mr-[12rem]">
               <h2 className="text-[1.3rem] mb-[0.4rem]" style={{ fontWeight: 'bold' }}>1910451894</h2>
@@ -444,9 +442,9 @@ export default function App() {
           className="w-full h-[40rem] bg-center flex flex-col items-center justify-center px-4"
           style={{ backgroundImage: `url(${bg5})`, backgroundSize: 'cover' }}
         >
-          <p className="text-[#6e4f40] text-[14px] mb-[0.5rem]" style={{ fontWeight: '600' }}>Merupakan suatu kebahagian dan kehormatan bagi kami, apabila<br/>Bapak/Ibu/Saudara/i, berkenan hadir dan memberikan do'a restu<br/>kepada kami</p>
-          <h2 className="text-[#593a2b] font-[bold] mb-[0.5rem]">KAMI YANG BERBAHAGIA</h2>
-          <h1 className="text-[#4b2a1b] text-[1.4rem]" style={{ fontWeight: 'bold' }}>Santi &amp; Mantri</h1>
+          <p className="text-[#6e4f40] text-[14px]" style={{ fontWeight: '600' }}>Merupakan suatu kebahagian dan kehormatan bagi kami, apabila<br/>Bapak/Ibu/Saudara/i, berkenan hadir dan memberikan do'a restu<br/>kepada kami</p>
+          <h2 className="text-[#593a2b] font">KAMI YANG BERBAHAGIA</h2>
+          <h1 className="text-[#4b2a1b]" style={{ fontWeight: 'bold' }}>Santi &amp; Mantri</h1>
         </div>
 
       </section>

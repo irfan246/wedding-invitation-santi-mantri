@@ -165,7 +165,7 @@ export default function App() {
           style={{ backgroundImage: `url(${bg3})`, backgroundSize: "cover" }}
           className="h-screen w-full  bg-center flex flex-col items-center justify-center px-4 text-center"
         >
-          <div className="bg-[#e6cebe] w-[23rem] h-[40rem] rounded-[14rem] border-[10px] border-[#59362b]">
+          <div className="bg-[#e6cebe] w-[23rem] h-sc rounded-[14rem] border-[10px] border-[#59362b]">
             <div className="flex flex-col items-center justify-center h-full text-center px-6">
               <h5 className="text-[1rem]">THE WEDDING OF</h5>
               <h1 className="text-[3rem]">Santi</h1>
@@ -424,10 +424,8 @@ export default function App() {
           </div>
         </div>
 
-        <div className="h-[25rem] w-full bg-center flex flex-col items-center justify-center px-4 bg-[#e6cbba]">
-          <h2 className="text-[#6e4f40] text-[2.4rem] mb-[0.6rem]">Wedding gift</h2>
-          <p className="text-[#6e4f40] text-[14px] mb-[1.4rem]" style={{ fontWeight: '600' }}>Bagi bapak/ibu/saudara/i yang ingin mengirimkan hadiah<br/>pernikahan dapat melalui nomer rekening di bawah ini</p>
-          <div className="w-[22.2rem] h-[14rem]" style={{ backgroundImage: `url(${card})` }}>
+        <div className="h-[20rem] w-full bg-center flex flex-col items-center justify-center px-4 bg-[#e6cbba]">
+          <div className="w-[22.2rem] h-[14.2rem]" style={{ backgroundImage: `url(${card})` }}>
             <img src={bni} alt="" width={100} className="mt-[1.5rem] ml-[14rem]" />
             <div className="mt-[5.5rem] mr-[12rem]">
               <h2 className="text-[1.3rem] mb-[0.4rem]" style={{ fontWeight: 'bold' }}>1910451894</h2>
