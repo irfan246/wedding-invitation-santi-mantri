@@ -59,7 +59,7 @@ const styles = {
     backgroundSize: "cover",
   },
   wayang1: {
-    marginTop: "7rem",
+    marginTop: "8rem",
     margin: "0 auto",
   },
   section1Text: {
