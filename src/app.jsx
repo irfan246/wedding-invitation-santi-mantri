@@ -14,6 +14,13 @@ import bni from "/img/BNI.png";
 import cincin from "/img/cincin.png";
 import wayang1 from "/img/wayang1.png";
 import wayang2 from "/img/wayang2.png";
+import cewek1 from "/img/cewek1.jpg";
+import cowok1 from "/img/cowok1.jpg";
+import cewekcowok1 from "/img/cewekcowok1.jpg";
+import cewekcowok2 from "/img/cewekcowok2.jpg";
+import cewekcowok3 from "/img/cewekcowok3.jpg";
+import cewekcowok4 from "/img/cewekcowok4.jpg";
+import cewekcowok5 from "/img/cewekcowok5.jpg";
 
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { FaCalendarPlus } from "react-icons/fa";
@@ -534,7 +541,7 @@ export default function App() {
             {/* Landscape */}
             <div className="col-span-[2]">
               <img
-                src="/img/cewekcowok3.jpg"
+                src={cewekcowok3}
                 alt=""
                 className="w-[100%] h-[100%] object-cover rounded-[0.5rem]"
               />
@@ -543,28 +550,28 @@ export default function App() {
             {/* Portraits */}
             <div className="row-span-[2]">
               <img
-                src="/img/cowok1.jpg"
+                src={cowok1}
                 alt=""
                 className="w-[100%] h-[100%] object-cover rounded-[0.5rem]"
               />
             </div>
             <div className="row-span-[2]">
               <img
-                src="/img/cewekcowok1.jpg"
+                src={cewekcowok1}
                 alt=""
                 className="w-[100%] h-[100%] object-cover rounded-[0.5rem]"
               />
             </div>
             <div className="row-span-[2]">
               <img
-                src="/img/cewekcowok2.jpg"
+                src={cewekcowok2}
                 alt=""
                 className="w-[100%] h-[100%] object-cover rounded-[0.5rem]"
               />
             </div>
             <div className="row-span-[2]">
               <img
-                src="/img/cewek1.jpg"
+                src={cewek1}
                 alt=""
                 className="w-[100%] h-[100%] object-cover rounded-[0.5rem]"
               />
@@ -573,14 +580,14 @@ export default function App() {
             {/* Landscape */}
             <div className="col-span-[2]">
               <img
-                src="/img/cewekcowok5.jpg"
+                src={cewekcowok5}
                 alt=""
                 className="w-[100%] h-[100%] object-cover rounded-[0.5rem]"
               />
             </div>
             <div className="col-span-[2]">
               <img
-                src="/img/cewekcowok4.jpg"
+                src={cewekcowok4}
                 alt=""
                 className="w-[100%] h-[100%] object-cover rounded-[0.5rem]"
               />
