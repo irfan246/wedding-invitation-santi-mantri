@@ -14,8 +14,6 @@ import bni from "/img/BNI.png";
 import cincin from "/img/cincin.png";
 import wayang1 from "/img/wayang1.png";
 import wayang2 from "/img/wayang2.png";
-import cewek1 from "/img/cewek1.jpg";
-import cowok1 from "/img/cowok1.jpg";
 import cewekcowok1 from "/img/cewekcowok1.jpg";
 import cewekcowok2 from "/img/cewekcowok2.jpg";
 import cewekcowok3 from "/img/cewekcowok3.jpg";
@@ -59,7 +57,7 @@ const styles = {
     backgroundSize: "cover",
   },
   wayang1: {
-    marginTop: "8rem",
+    marginTop: "9rem",
     margin: "0 auto",
   },
   section1Text: {
@@ -668,6 +666,14 @@ export default function App() {
       duration: 1.5,
       ease: "power3.inOut",
       transformOrigin: "center center",
+      onComplete: () => {
+        // Mulai putar musik
+        if (audioRef.current) {
+          audioRef.current.play().catch((err) => {
+            console.log("Autoplay error:", err);
+          });
+        }
+      },
     });
 
     // Setelah zoom selesai → sembunyikan Section 1 & 2
@@ -678,12 +684,6 @@ export default function App() {
         section1Ref.current.style.display = "none";
         section2Ref.current.style.display = "none";
         section3Ref.current.style.display = "block";
-        // Mulai putar musik
-        if (audioRef.current) {
-          audioRef.current.play().catch((err) => {
-            console.log("Autoplay error:", err);
-          });
-        }
         window.scrollTo({ top: 0, behavior: "auto" }); // pindah ke section 3
         const children = section3Ref.current.querySelectorAll(
           "#div, #img, #text, #form"
@@ -969,16 +969,10 @@ export default function App() {
 
             {/* Portraits */}
             <div style={styles.imgPortrait}>
-              <img src={cowok1} alt="" style={styles.imageStyle} />
-            </div>
-            <div style={styles.imgPortrait}>
               <img src={cewekcowok1} alt="" style={styles.imageStyle} />
             </div>
             <div style={styles.imgPortrait}>
               <img src={cewekcowok2} alt="" style={styles.imageStyle} />
-            </div>
-            <div style={styles.imgPortrait}>
-              <img src={cewek1} alt="" style={styles.imageStyle} />
             </div>
 
             {/* Landscape */}
