@@ -74,7 +74,7 @@ const styles = {
   },
   section1Subtitle: {
     color: "#ffffff",
-    fontFamily: "Playfair Display",
+    fontFamily: "Roboto",
     marginBottom: "3rem",
   },
   toText: {
@@ -170,7 +170,7 @@ const styles = {
   },
   cardH5: {
     fontSize: "1rem",
-    fontFamily: "Playfair Display",
+    fontFamily: "Roboto",
   },
   cardH1: {
     fontSize: "3rem",
@@ -300,7 +300,7 @@ const styles = {
     fontSize: "1.4rem",
     marginBottom: "0.5rem",
     fontWeight: "600",
-    fontFamily: "Playfair Display",
+    fontFamily: "Roboto",
   },
   eventTime: {
     color: "#6e5448",
