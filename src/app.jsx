@@ -1,4 +1,5 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { gsap } from "gsap";
 import Countdown from "./components/countdown";
 
@@ -14,6 +15,13 @@ import cincin from "/img/cincin.png";
 import wayang1 from "/img/wayang1.png";
 import wayang2 from "/img/wayang2.png";
 
+import { FaMapMarkerAlt } from "react-icons/fa";
+import { FaCalendarPlus } from "react-icons/fa";
+import { FaCopy } from "react-icons/fa";
+import { FaEnvelopeOpenText } from "react-icons/fa";
+
+gsap.registerPlugin(ScrollTrigger);
+
 export default function App() {
   const section1Ref = useRef(null);
   const section2Ref = useRef(null);
@@ -21,6 +29,8 @@ export default function App() {
   const btnRef = useRef(null);
   const wayang1Ref = useRef(null);
   const wayang2Ref = useRef(null);
+
+  const [guestName, setGuestName] = useState("Fulan");
 
   const playAnimation = () => {
     const tl = gsap.timeline();
@@ -74,21 +84,58 @@ export default function App() {
         section2Ref.current.style.display = "none";
         section3Ref.current.style.display = "block";
         window.scrollTo({ top: 0, behavior: "auto" }); // pindah ke section 3
+        const children = section3Ref.current.querySelectorAll(
+          "#div, #img, #text, #form"
+        );
+        children.forEach((el) => {
+          gsap.fromTo(
+            el,
+            { opacity: 0, y: 50 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 1,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: el,
+                start: "top 80%", // elemen mulai terlihat 20%–30%
+                toggleActions: "play none none none", // hanya sekali
+              },
+            }
+          );
+        });
+
+        ScrollTrigger.refresh();
       },
     });
   };
 
   useEffect(() => {
-    if (btnRef.current) {
-      btnRef.current.addEventListener("click", (e) => {
+    // ambil query param `to`
+    const params = new URLSearchParams(window.location.search);
+    const to = params.get("to");
+    if (to) {
+      setGuestName(decodeURIComponent(to));
+    }
+
+    // pasang event listener untuk tombol
+    const btn = btnRef.current;
+    if (btn) {
+      const handleClick = (e) => {
         e.preventDefault();
         playAnimation();
-      });
+      };
+      btn.addEventListener("click", handleClick);
+
+      // cleanup event listener biar gak dobel
+      return () => {
+        btn.removeEventListener("click", handleClick);
+      };
     }
   }, []);
 
   return (
-    <div className="w-[463px] max-w-md h-screen mx-auto bg-white overflow-x-hidden relative">
+    <div className="w-[463px] max-w-md min-h-screen mx-auto bg-white overflow-x-hidden relative scroll-smooth">
       {/* Section 1 */}
       <section
         ref={section1Ref}
@@ -103,28 +150,61 @@ export default function App() {
           height="120"
         />
 
-        <h4 className="text-[#ffffff] mb-[0.3rem]">THE WEDDING OF</h4>
+        <h4
+          className="text-[#ffffff] mb-[0.3rem]"
+          style={{ fontFamily: "Playfair Display" }}
+        >
+          THE WEDDING OF
+        </h4>
 
-        <h2 className="text-[2.5rem] font-serif text-[#E6D3A3] mb-[0.3rem]">
+        <h2
+          className="text-[2.5rem] font-serif text-[#E6D3A3] mb-[0.3rem]"
+          style={{ fontFamily: "Marck Script", fontWeight: "bold" }}
+        >
           Santi &amp; Mantri
         </h2>
 
-        <h4 className="text-[#ffffff] mb-[3rem]">MINGGU, 21 SEPTEMBER 2025</h4>
+        <h4
+          className="text-[#ffffff] mb-[3rem]"
+          style={{ fontFamily: "Playfair Display" }}
+        >
+          MINGGU, 21 SEPTEMBER 2025
+        </h4>
 
         <div className="text-center mb-6">
-          <p className="text-[#ffffff]">Kepada Yth:</p>
-          <p className="text-[#ffffff] mb-[1rem]">Bpk/Ibu/Saudara/i</p>
-          <p className="text-lg font-medium text-wedding-gold mb-[1rem]">
-            Nama Tamu
+          <p
+            className="text-[#ffffff]"
+            style={{ fontFamily: "Playfair Display" }}
+          >
+            Kepada Yth:
           </p>
-          <p className="text-[#ffffff] mb-[1rem]">Di Tempat</p>
+          <p
+            className="text-[#ffffff] mb-[0.4rem]"
+            style={{ fontFamily: "Playfair Display" }}
+          >
+            Bpk/Ibu/Saudara/i
+          </p>
+          <p
+            className="text-[1.6rem] font-medium text-[#d6b183] mb-[0.4rem]"
+            style={{ fontWeight: "600", fontFamily: "Marck Script" }}
+          >
+            {guestName}
+          </p>
+          <p
+            className="text-[#ffffff] mb-[1rem]"
+            style={{ fontFamily: "Playfair Display" }}
+          >
+            Di Tempat
+          </p>
         </div>
 
         <a
           href="#"
           ref={btnRef}
-          className="bg-[#E6D3A3] px-[2.6rem] py-[0.3rem] rounded-[0.3rem] text-[1rem] no-underline inline-block"
+          style={{ fontFamily: "Roboto" }}
+          className="bg-[#E6D3A3] px-[2.6rem] py-[0.3rem] rounded-[0.3rem] text-[1rem] no-underline flex justify-center items-center text-[#5c3e33]"
         >
+          <FaEnvelopeOpenText className="mr-[0.5rem]" />
           Buka Undangan
         </a>
       </section>
@@ -165,13 +245,36 @@ export default function App() {
           style={{ backgroundImage: `url(${bg3})`, backgroundSize: "cover" }}
           className="h-screen w-full  bg-center flex flex-col items-center justify-center px-4 text-center"
         >
-          <div className="bg-[#e6cebe] w-[23rem] h-[40rem] rounded-[14rem] border-[10px] border-[#59362b]">
+          <div
+            className="bg-[#e6cebe] w-[23rem] h-[40rem] rounded-[14rem] border-[10px] border-[#59362b] text-[#593629]"
+            id="div"
+          >
             <div className="flex flex-col items-center justify-center h-full text-center px-6">
-              <h5 className="text-[1rem]">THE WEDDING OF</h5>
-              <h1 className="text-[3rem]">Santi</h1>
+              <h5
+                className="text-[1rem]"
+                style={{ fontFamily: "Playfair Display" }}
+              >
+                THE WEDDING OF
+              </h5>
+              <h1
+                className="text-[3rem]"
+                style={{ fontFamily: "Marck Script", fontWeight: "bold" }}
+              >
+                Santi
+              </h1>
               <h3 className="text-[2rem]">&amp;</h3>
-              <h1 className="text-[3rem]">Mantri</h1>
-              <h5 className="text-[1rem]">MINGGU, 21 SEPTEMBER 2025</h5>
+              <h1
+                className="text-[3rem]"
+                style={{ fontFamily: "Marck Script", fontWeight: "bold" }}
+              >
+                Mantri
+              </h1>
+              <h5
+                className="text-[1rem]"
+                style={{ fontFamily: "Playfair Display" }}
+              >
+                MINGGU, 21 SEPTEMBER 2025
+              </h5>
             </div>
           </div>
         </div>
@@ -183,11 +286,20 @@ export default function App() {
             width="140"
             height="120"
             className="mb-[1rem]"
+            id="img"
           />
-          <h2 className="text-[#caaa91] text-[1.4rem] mb-[1.4rem]">
+          <h2
+            className="text-[#caaa91] text-[1.4rem] mb-[1.4rem]"
+            id="text"
+            style={{ fontWeight: "bold", fontFamily: "Playfair Display" }}
+          >
             WE FOUND LOVE
           </h2>
-          <p className="text-[#caaa91] text-[13px] mb-[1.4rem]">
+          <p
+            className="text-[#caaa91] text-[13px] mb-[1.4rem]"
+            id="text"
+            style={{ fontFamily: "Roboto" }}
+          >
             "Dan di antara tanda-tanda kekuasaan-Nya diciptakan-Nya
             <br />
             untukmu pasangan hidup dari jenismu sendiri supaya kamu dapat
@@ -198,7 +310,11 @@ export default function App() {
             <br />
             bagi orang-orang yang berpikir."
           </p>
-          <p className="text-[#caaa91] mb-[2rem] text-[14px]">
+          <p
+            className="text-[#caaa91] mb-[2rem] text-[14px]"
+            id="text"
+            style={{ fontFamily: "Playfair Display" }}
+          >
             QS.Ar-Rum Ayat 21
           </p>
         </div>
@@ -207,14 +323,23 @@ export default function App() {
           className="h-[50rem] w-full  bg-center flex flex-col items-center justify-center px-4"
           style={{ backgroundImage: `url(${bg4})`, backgroundSize: "cover" }}
         >
-          <div className="bg-[#e6cebe] w-[23rem] h-[48rem] rounded-[14rem] border-[10px] border-[#59362b]">
+          <div
+            className="bg-[#e6cebe] w-[23rem] h-[48rem] rounded-[14rem] border-[10px] border-[#59362b] text-[#593022]"
+            id="div"
+          >
             <div className="flex flex-col items-center justify-center h-full text-center px-6">
-              <h2 className="text-[2rem] mb-[1.4rem] font-bold">
+              <h2
+                className="text-[2rem] mb-[1.4rem] font-bold"
+                style={{ fontFamily: "Playfair Display" }}
+              >
                 BRIDE &amp;
                 <br />
                 GROOM
               </h2>
-              <p className="text-[14px] mb-[1.4rem]">
+              <p
+                className="text-[14px] mb-[1.4rem]"
+                style={{ fontFamily: "Roboto" }}
+              >
                 Assalamu'alaikum Warahmatullahi Wabarakatuh
                 <br />
                 Dengan mohon rahmat dan ridho Allah Swt. kami
@@ -223,17 +348,48 @@ export default function App() {
                 <br />
                 menghadiri acara pernikahan putra-putri kami:
               </p>
-              <h1 className="text-[2rem]">Santi</h1>
-              <h3 className="text-[1.2rem]">Tri Susanti</h3>
-              <p className="text-[1.1rem]">
+              <h1
+                className="text-[3rem]"
+                style={{ fontFamily: "Marck Script", fontWeight: "bold" }}
+              >
+                Santi
+              </h1>
+              <h3
+                className="text-[1.2rem]"
+                style={{ fontFamily: "Playfair Display", fontWeight: "500" }}
+              >
+                Tri Susanti
+              </h3>
+              <p
+                className="text-[1rem]"
+                style={{ fontFamily: "Playfair Display" }}
+              >
                 Putri Ketiga dari
                 <br />
                 Bpk. Kamilin &amp; Ibu Endang Kurniati
               </p>
-              <h1 className="text-[4rem]">&amp;</h1>
-              <h1 className="text-[2rem]">Mantri</h1>
-              <h3 className="text-[1.2rem]">Mantri</h3>
-              <p className="text-[1.1rem] mb-[3rem]">
+              <h1
+                className="text-[5rem]"
+                style={{ fontFamily: "Marck Script", fontWeight: "bold" }}
+              >
+                &amp;
+              </h1>
+              <h1
+                className="text-[3rem]"
+                style={{ fontFamily: "Marck Script", fontWeight: "bold" }}
+              >
+                Mantri
+              </h1>
+              <h3
+                className="text-[1.2rem]"
+                style={{ fontFamily: "Playfair Display", fontWeight: "500" }}
+              >
+                Mantri
+              </h3>
+              <p
+                className="text-[1rem] mb-[3rem]"
+                style={{ fontFamily: "Playfair Display" }}
+              >
                 Putra Ketiga dari
                 <br />
                 Bpk. Miit Tonin &amp; Ibu Puah
@@ -249,6 +405,7 @@ export default function App() {
               backgroundImage: `url(${bg6})`,
               backgroundSize: "cover",
             }}
+            id="div"
           >
             <img
               src={cincin}
@@ -265,19 +422,19 @@ export default function App() {
             </h1>
             <h3
               className="text-[#694c42] text-[1.4rem] mb-[0.5rem]"
-              style={{ fontWeight: "600" }}
+              style={{ fontWeight: "600", fontFamily: "Playfair Display" }}
             >
               Minggu, 21 September 2025
             </h3>
             <h5
               className="text-[#6e5448] text-[1.1rem] mb-[5rem]"
-              style={{ fontWeight: "600" }}
+              style={{ fontWeight: "600", fontFamily: "Roboto" }}
             >
               Pukul: 09.00 WIB
             </h5>
             <h5
               className="text-[#61453e] text-[14px] mb-[0.5rem]"
-              style={{ fontWeight: "bold" }}
+              style={{ fontWeight: "bold", fontFamily: "Playfair Display" }}
             >
               Bertempat dikediaman mempelai wanita
             </h5>
@@ -288,9 +445,10 @@ export default function App() {
             </p>
             <a
               href="https://maps.app.goo.gl/NqNUfkEM6TjamRNU9"
-              className="bg-[#8b6448] text-[#ffffff] px-[1rem] py-[0.5rem] rounded-[1rem] text-[1rem] no-underline inline-block mb-[2rem]"
+              target="_blank"
+              className="bg-[#8b6448] text-[#ffffff] px-[1rem] py-[0.5rem] rounded-[1rem] text-[1rem] no-underline flex justify-center items-center mb-[2rem]"
             >
-              OPEN MAPS
+              <FaMapMarkerAlt className="mr-[0.5rem]" /> OPEN MAPS
             </a>
           </div>
           <div
@@ -299,6 +457,7 @@ export default function App() {
               backgroundImage: `url(${bg6})`,
               backgroundSize: "cover",
             }}
+            id="div"
           >
             <h1
               className="text-[#613d34] text-[1.8rem] mb-[0.5rem]"
@@ -308,19 +467,19 @@ export default function App() {
             </h1>
             <h3
               className="text-[#694c42] text-[1.4rem] mb-[0.5rem]"
-              style={{ fontWeight: "600" }}
+              style={{ fontWeight: "600", fontFamily: "Playfair Display" }}
             >
               Minggu, 21 September 2025
             </h3>
             <h5
               className="text-[#6e5448] text-[1.1rem] mb-[5rem]"
-              style={{ fontWeight: "600" }}
+              style={{ fontWeight: "600", fontFamily: "Roboto" }}
             >
               Pukul: 11.00 WIB s.d selesai
             </h5>
             <h5
               className="text-[#61453e] text-[14px] mb-[0.5rem]"
-              style={{ fontWeight: "bold" }}
+              style={{ fontWeight: "bold", fontFamily: "Playfair Display" }}
             >
               Bertempat dikediaman mempelai wanita
             </h5>
@@ -331,124 +490,267 @@ export default function App() {
             </p>
             <a
               href="https://maps.app.goo.gl/NqNUfkEM6TjamRNU9"
-              className="bg-[#8b6448] text-[#ffffff] px-[1rem] py-[0.5rem] rounded-[1rem] text-[1rem] no-underline inline-block mb-[2rem]"
+              target="_blank"
+              className="bg-[#8b6448] text-[#ffffff] px-[1rem] py-[0.5rem] rounded-[1rem] text-[1rem] no-underline flex justify-center items-center mb-[2rem]"
             >
-              OPEN MAPS
+              <FaMapMarkerAlt className="mr-[0.5rem]" /> OPEN MAPS
             </a>
           </div>
         </div>
 
         <div className="h-[20rem] w-full bg-center flex flex-col items-center justify-center px-4 bg-[#e6cbba]">
-          <div>
+          <div id="div">
             <h2
-              className="text-[#613d34] text-[1.8rem] mb-[1.5rem]"
-              style={{ fontWeight: "bold" }}
+              className="text-[#613d34] text-[2rem] mb-[1.5rem]"
+              style={{ fontWeight: "bold", fontFamily: "Marck Script" }}
             >
               Counting The Day
             </h2>
             <Countdown />
             <a
-              href=""
-              className="bg-[#543022] text-[#ffffff] px-[1.4rem] py-[0.8rem] rounded-[5rem] text-[0.9rem] no-underline inline-block mb-[2rem] mt-[2rem]"
+              href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=The+Wedding+of+Santi+%26+Mantri&dates=20250921T020000Z/20250921T050000Z&details=Resepsi+Pernikahan&location=Rw.+Panjang,+Bojonggede,+Bogor"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-[#543022] text-[#ffffff] px-[0.4rem] py-[0.8rem] rounded-[5rem] text-[0.9rem] no-underline flex justify-center items-center mb-[2rem] mt-[2rem]"
             >
-              SIMPAN DI KALENDER
+              <FaCalendarPlus className="mr-[0.5rem]" /> SIMPAN DI KALENDER
             </a>
           </div>
         </div>
 
-        <div className="h-[35rem] w-[100%] bg-[center] flex flex-col items-[center] justify-[center] px-[1rem] bg-[#e6cbba] overflow-y-[auto]">
-          <h2 className="text-[1.5rem] font-bold mb-[1.5rem]">Our Moment</h2>
-          <div className="grid grid-cols-[3] gap-[1rem] w-[100%] max-w-[425px] auto-rows-[150px]">
-            {/* Foto 1 - landscape */}
-            {/* <div className="col-span-[2]">
+        <div className="w-[100%] bg-[#e6cbba] flex flex-col items-[center] justify-[start] px-[1rem] py-[2rem]">
+          <h2
+            className="text-[3rem] mb-[1rem] text-[#593528] ml-[8rem]"
+            style={{ fontWeight: "bold", fontFamily: "Marck Script" }}
+            id="text"
+          >
+            Our Moment
+          </h2>
+
+          <div
+            className="grid grid-cols-3 gap-[0.5rem] w-[100%] max-w-[425px] auto-rows-[150px]"
+            id="div"
+          >
+            {/* Landscape */}
+            <div className="col-span-[2]">
               <img
                 src="/img/cewekcowok3.jpg"
                 alt=""
-                className="w-[30rem] h-[10rem] object-[cover] rounded-[0.5rem]"
+                className="w-[100%] h-[100%] object-cover rounded-[0.5rem]"
               />
-            </div> */}
+            </div>
 
-            {/* Foto 2 */}
-            {/* <div>
+            {/* Portraits */}
+            <div className="row-span-[2]">
               <img
                 src="/img/cowok1.jpg"
                 alt=""
-                className="w-[100%] h-[100%] object-[cover] rounded-[0.5rem]"
+                className="w-[100%] h-[100%] object-cover rounded-[0.5rem]"
               />
-            </div> */}
-
-            {/* Foto 3 - portrait tinggi */}
-            {/* <div className="row-span-[2]">
+            </div>
+            <div className="row-span-[2]">
               <img
                 src="/img/cewekcowok1.jpg"
                 alt=""
-                className="w-[100%] h-[100%] object-[cover] rounded-[0.5rem]"
+                className="w-[100%] h-[100%] object-cover rounded-[0.5rem]"
               />
-            </div> */}
-
-            {/* Foto 4 */}
-            {/* <div>
+            </div>
+            <div className="row-span-[2]">
               <img
                 src="/img/cewekcowok2.jpg"
                 alt=""
-                className="w-[100%] h-[100%] object-[cover] rounded-[0.5rem]"
+                className="w-[100%] h-[100%] object-cover rounded-[0.5rem]"
               />
-            </div> */}
-
-            {/* Foto 5 */}
-            {/* <div>
+            </div>
+            <div className="row-span-[2]">
               <img
                 src="/img/cewek1.jpg"
                 alt=""
-                className="w-[100%] h-[100%] object-[cover] rounded-[0.5rem]"
+                className="w-[100%] h-[100%] object-cover rounded-[0.5rem]"
               />
-            </div> */}
+            </div>
 
-            {/* Foto 6 - landscape */}
-            {/* <div className="col-span-[2]">
+            {/* Landscape */}
+            <div className="col-span-[2]">
               <img
                 src="/img/cewekcowok5.jpg"
                 alt=""
-                className="w-[100%] h-[100%] object-[cover] rounded-[0.5rem]"
+                className="w-[100%] h-[100%] object-cover rounded-[0.5rem]"
               />
-            </div> */}
-
-            {/* Foto 7 */}
-            {/* <div>
+            </div>
+            <div className="col-span-[2]">
               <img
                 src="/img/cewekcowok4.jpg"
                 alt=""
-                className="w-[100%] h-[100%] object-[cover] rounded-[0.5rem]"
+                className="w-[100%] h-[100%] object-cover rounded-[0.5rem]"
               />
-            </div> */}
-          </div>
-        </div>
-
-        <div className="h-[25rem] w-full bg-center flex flex-col items-center justify-center px-4 bg-[#e6cbba]">
-          <h2 className="text-[#6e4f40] text-[2.4rem] mb-[0.6rem]">Wedding gift</h2>
-          <p className="text-[#6e4f40] text-[14px] mb-[1.4rem]" style={{ fontWeight: '600' }}>Bagi bapak/ibu/saudara/i yang ingin mengirimkan hadiah<br/>pernikahan dapat melalui nomer rekening di bawah ini</p>
-          <div className="w-[22.2rem] h-[14rem]" style={{ backgroundImage: `url(${card})` }}>
-            <img src={bni} alt="" width={100} className="mt-[1.5rem] ml-[14rem]" />
-            <div className="mt-[5.5rem] mr-[12rem]">
-              <h2 className="text-[1.3rem] mb-[0.4rem]" style={{ fontWeight: 'bold' }}>1910451894</h2>
-              <h2 className="text-[1.3rem]" style={{ fontWeight: '400' }}>Tri Susanti</h2>
             </div>
           </div>
         </div>
 
-        <div className="h-[35rem] w-full  bg-center flex flex-col items-center justify-center px-4 bg-[#5c3e33]">
-          
+        <div className="h-[25rem] w-full bg-center flex flex-col items-center justify-center px-4 bg-[#e6cbba]">
+          <h2
+            className="text-[#6e4f40] text-[2.4rem] mb-[0.6rem]"
+            id="text"
+            style={{ fontWeight: "bold", fontFamily: "Marck Script" }}
+          >
+            Wedding gift
+          </h2>
+          <p
+            className="text-[#6e4f40] text-[14px] mb-[1.4rem]"
+            style={{ fontWeight: "600", fontFamily: "Roboto" }}
+            id="text"
+          >
+            Bagi bapak/ibu/saudara/i yang ingin mengirimkan hadiah
+            <br />
+            pernikahan dapat melalui nomer rekening di bawah ini
+          </p>
+          <div
+            className="w-[22.2rem] h-[14rem]"
+            style={{ backgroundImage: `url(${card})` }}
+            id="div"
+          >
+            <img
+              src={bni}
+              alt=""
+              width={100}
+              className="mt-[1.5rem] ml-[14rem]"
+            />
+            <div className="mt-[5.5rem] mr-[12rem] relative">
+              <h2
+                className="text-[1.3rem] mb-[0.4rem]"
+                style={{ fontWeight: "bold" }}
+              >
+                1910451894
+              </h2>
+              <h2 className="text-[1.3rem]" style={{ fontWeight: "400" }}>
+                Tri Susanti
+              </h2>
+              <button
+                onClick={() => {
+                  navigator.clipboard.writeText("1910451894");
+                  alert("Nomor rekening berhasil disalin!");
+                }}
+                className="absolute top-[1rem] left-[15rem] bg-[#969490] text-[#fff] px-[1.5rem] py-[0.5rem] rounded-[0.3rem] text-[0.9rem] flex justify-center items-center"
+              >
+                <FaCopy className="mr-[0.5rem]" /> Salin
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div className="h-[40rem] w-full  bg-center flex flex-col items-center justify-center px-4 bg-[#5c3e33]">
+          <img
+            src={wayang1}
+            alt=""
+            width={130}
+            height={130}
+            className="mt-[1.2rem]"
+            id="img"
+          />
+          <h1
+            className="text-[#ccaf8b] text-[3.6rem] mb-[0.4rem]"
+            id="text"
+            style={{ fontFamily: "Marck Script", fontWeight: "bold" }}
+          >
+            Best Wishes
+          </h1>
+          <p
+            className="text-[#ccaf8b] text-[15px] mb-[0.8rem]"
+            id="text"
+            style={{ fontFamily: "Roboto" }}
+          >
+            Sampaikan do'a dan ucapan terbaik anda
+          </p>
+          <form
+            action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSd8fpO_H2mBoHtz_J9ODtQZ4SmUDrrMl8FbsDPh-OUMIIGpYg/formResponse" // ganti dengan URL formResponse
+            method="POST"
+            target="hidden_iframe"
+            className="flex flex-col bg-[#ffffff] p-[1rem] rounded-[0.5rem] w-[100%] max-w-[420px] mx-[auto] mb-[1.2rem]"
+            id="form"
+          >
+            {/* Input nama tamu */}
+            <input
+              type="text"
+              placeholder="Nama Tamu"
+              name="entry.73155143"
+              id="nama_tamu"
+              className="w-[100%] border border-[#ccc] rounded-[0.3rem] px-[0.8rem] py-[0.5rem] mb-[0.8rem] text-[0.9rem]"
+            />
+
+            {/* Select konfirmasi */}
+            <select
+              name="entry.2128657294"
+              id="kehadiran"
+              className="w-[100%] border border-[#ccc] rounded-[0.3rem] px-[0.8rem] py-[0.5rem] mb-[0.8rem] text-[0.9rem]"
+            >
+              <option value="">Konfirmasi Kehadiran</option>
+              <option value="hadir">Hadir</option>
+              <option value="tidak_hadir">Tidak Hadir</option>
+            </select>
+
+            {/* Textarea ucapan */}
+            <textarea
+              name="entry.945093395"
+              id="ucapan"
+              placeholder="Tulis ucapan"
+              className="w-[100%] border border-[#ccc] rounded-[0.3rem] px-[0.8rem] py-[0.5rem] mb-[0.8rem] text-[0.9rem] h-[6rem] resize-none"
+            ></textarea>
+
+            {/* Tombol kirim */}
+            <div className="flex justify-[end]">
+              <button
+                type="submit"
+                className="bg-[#5c3e33] text-[#fff] px-[1.5rem] py-[0.5rem] rounded-[0.3rem] text-[0.9rem]"
+              >
+                Kirim
+              </button>
+            </div>
+          </form>
+
+          <iframe name="hidden_iframe" style={{ display: "none" }}></iframe>
         </div>
 
         <div
           className="w-full h-[40rem] bg-center flex flex-col items-center justify-center px-4"
-          style={{ backgroundImage: `url(${bg5})`, backgroundSize: 'cover' }}
+          style={{ backgroundImage: `url(${bg5})`, backgroundSize: "cover" }}
         >
-          <p className="text-[#6e4f40] text-[14px] mb-[0.5rem]" style={{ fontWeight: '600' }}>Merupakan suatu kebahagian dan kehormatan bagi kami, apabila<br/>Bapak/Ibu/Saudara/i, berkenan hadir dan memberikan do'a restu<br/>kepada kami</p>
-          <h2 className="text-[#593a2b] font-[bold] mb-[0.5rem]">KAMI YANG BERBAHAGIA</h2>
-          <h1 className="text-[#4b2a1b] text-[1.4rem]" style={{ fontWeight: 'bold' }}>Santi &amp; Mantri</h1>
+          <p
+            className="text-[#6e4f40] text-[14px] mb-[0.5rem]"
+            style={{ fontWeight: "600", fontFamily: "Roboto" }}
+            id="text"
+          >
+            Merupakan suatu kebahagian dan kehormatan bagi kami, apabila
+            <br />
+            Bapak/Ibu/Saudara/i, berkenan hadir dan memberikan do'a restu
+            <br />
+            kepada kami
+          </p>
+          <h2
+            className="text-[#593a2b] mb-[0.5rem] text-[1.2rem]"
+            id="text"
+            style={{ fontFamily: "Playfair Display" }}
+          >
+            KAMI YANG BERBAHAGIA
+          </h2>
+          <h1
+            className="text-[#4b2a1b] text-[1.4rem]"
+            style={{ fontWeight: "bold", fontFamily: "Playfair Display" }}
+            id="text"
+          >
+            Santi &amp; Mantri
+          </h1>
         </div>
 
+        <div className="h-[10rem] w-full  bg-center flex flex-col items-center justify-center px-4 bg-[#5c3e33]">
+          <h2
+            className="text-[#fff] text-[1.2rem] mb-[0.8rem]"
+            style={{ fontWeight: "bold" }}
+          >
+            DCode
+          </h2>
+          <p className="text-[#fff] text-[0.9rem]">Made with ❤️ by DCode</p>
+        </div>
       </section>
     </div>
   );
