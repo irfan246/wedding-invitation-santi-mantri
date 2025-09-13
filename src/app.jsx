@@ -678,13 +678,13 @@ export default function App() {
         section1Ref.current.style.display = "none";
         section2Ref.current.style.display = "none";
         section3Ref.current.style.display = "block";
-        window.scrollTo({ top: 0, behavior: "auto" }); // pindah ke section 3
         // Mulai putar musik
         if (audioRef.current) {
           audioRef.current.play().catch((err) => {
             console.log("Autoplay error:", err);
           });
         }
+        window.scrollTo({ top: 0, behavior: "auto" }); // pindah ke section 3
         const children = section3Ref.current.querySelectorAll(
           "#div, #img, #text, #form"
         );
