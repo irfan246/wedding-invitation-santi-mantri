@@ -383,17 +383,35 @@ const styles = {
   },
   imageGrid: {
     display: "grid",
-    gridTemplateColumns: "repeat(3, 1fr)",
+    gridTemplateColumns: "repeat(2, 1fr)",
     gap: "0.5rem",
     width: "100%",
     maxWidth: "425px",
-    gridAutoRows: "150px",
   },
-  imgLandscape: {
-    gridColumn: "span 2",
+  gridItem1: {
+    gridColumn: "1 / 2",
+    gridRow: "1 / 2",
+    height: "150px",
   },
-  imgPortrait: {
-    gridRow: "span 2",
+  gridItem2: {
+    gridColumn: "2 / 3",
+    gridRow: "1 / 2",
+    height: "150px",
+  },
+  gridItem3: {
+    gridColumn: "1 / 2",
+    gridRow: "2 / 3",
+    height: "150px",
+  },
+  gridItem4: {
+    gridColumn: "2 / 3",
+    gridRow: "2 / 4",
+    height: "305px",
+  },
+  gridItem5: {
+    gridColumn: "1 / 2",
+    gridRow: "3 / 4",
+    height: "150px",
   },
   imageStyle: {
     width: "100%",
@@ -963,23 +981,23 @@ export default function App() {
 
           <div style={styles.imageGrid} id="div">
             {/* Landscape */}
-            <div style={styles.imgLandscape}>
+            <div style={styles.gridItem3}>
               <img src={cewekcowok3} alt="" style={styles.imageStyle} />
             </div>
 
             {/* Portraits */}
-            <div style={styles.imgPortrait}>
+            <div style={styles.gridItem4}>
               <img src={cewekcowok1} alt="" style={styles.imageStyle} />
             </div>
-            <div style={styles.imgPortrait}>
+            <div style={styles.gridItem5}>
               <img src={cewekcowok2} alt="" style={styles.imageStyle} />
             </div>
 
             {/* Landscape */}
-            <div style={styles.imgLandscape}>
+            <div style={styles.gridItem2}>
               <img src={cewekcowok5} alt="" style={styles.imageStyle} />
             </div>
-            <div style={styles.imgLandscape}>
+            <div style={styles.gridItem1}>
               <img src={cewekcowok4} alt="" style={styles.imageStyle} />
             </div>
           </div>
