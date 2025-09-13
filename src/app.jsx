@@ -22,12 +22,599 @@ import cewekcowok3 from "/img/cewekcowok3.jpg";
 import cewekcowok4 from "/img/cewekcowok4.jpg";
 import cewekcowok5 from "/img/cewekcowok5.jpg";
 
+import music from "/music/Marry_Your_Daughter.mp3";
+
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { FaCalendarPlus } from "react-icons/fa";
 import { FaCopy } from "react-icons/fa";
 import { FaEnvelopeOpenText } from "react-icons/fa";
 
 gsap.registerPlugin(ScrollTrigger);
+
+const styles = {
+  container: {
+    width: "100%",
+    maxWidth: "463px",
+    minHeight: "100vh",
+    margin: "0 auto",
+    backgroundColor: "#ffffff",
+    overflowX: "hidden",
+    scrollBehavior: "smooth",
+    position: "relative",
+  },
+  section1: {
+    position: "absolute",
+    top: "0",
+    left: "0",
+    width: "100%",
+    height: "100vh",
+    backgroundPosition: "center",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: "0 1rem",
+    textAlign: "center",
+    zIndex: "20",
+    backgroundSize: "cover",
+  },
+  wayang1: {
+    marginTop: "7rem",
+    margin: "0 auto",
+  },
+  section1Text: {
+    color: "#ffffff",
+    fontFamily: "Playfair Display",
+    marginBottom: "0.3rem",
+  },
+  section1Title: {
+    fontSize: "2.5rem",
+    fontFamily: "Marck Script",
+    fontWeight: "bold",
+    color: "#E6D3A3",
+    marginBottom: "0.3rem",
+  },
+  section1Subtitle: {
+    color: "#ffffff",
+    fontFamily: "Playfair Display",
+    marginBottom: "3rem",
+  },
+  toText: {
+    color: "#ffffff",
+    fontFamily: "Playfair Display",
+  },
+  guestName: {
+    fontSize: "1.6rem",
+    fontWeight: "600",
+    fontFamily: "Marck Script",
+    color: "#d6b183",
+    marginBottom: "0.4rem",
+  },
+  button: {
+    backgroundColor: "#E6D3A3",
+    padding: "0.3rem 2.6rem",
+    borderRadius: "0.3rem",
+    fontSize: "1rem",
+    textDecoration: "none",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    color: "#5c3e33",
+    fontFamily: "Roboto",
+  },
+  section2: {
+    position: "absolute",
+    top: "0",
+    left: "0",
+    width: "100%",
+    height: "100vh",
+    backgroundPosition: "center",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    textAlign: "center",
+    zIndex: "10",
+    backgroundSize: "cover",
+  },
+  section2WayangContainer: {
+    position: "relative",
+    width: "220px",
+    height: "50px",
+    marginBottom: "15rem",
+  },
+  wayangImage: {
+    position: "absolute",
+    top: "0",
+    left: "0",
+  },
+  wayang2: {
+    opacity: "0.7",
+  },
+  section3: {
+    position: "relative",
+    width: "100%",
+    backgroundPosition: "center",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "flex-start",
+    textAlign: "center",
+  },
+  section3Bg: {
+    height: "100vh",
+    width: "100%",
+    backgroundPosition: "center",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: "0 1rem",
+    textAlign: "center",
+    backgroundSize: "cover",
+  },
+  roundedCard: {
+    backgroundColor: "#e6cebe",
+    width: "23rem",
+    height: "40rem",
+    borderRadius: "14rem",
+    border: "10px solid #59362b",
+    color: "#593629",
+  },
+  cardContent: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    height: "100%",
+    textAlign: "center",
+    padding: "0 1.5rem",
+  },
+  cardH5: {
+    fontSize: "1rem",
+    fontFamily: "Playfair Display",
+  },
+  cardH1: {
+    fontSize: "3rem",
+    fontFamily: "Marck Script",
+    fontWeight: "bold",
+  },
+  cardH3: {
+    fontSize: "2rem",
+  },
+  section3BgBrown: {
+    height: "35rem",
+    width: "100%",
+    backgroundPosition: "center",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: "0 1rem",
+    backgroundColor: "#5c3e33",
+  },
+  wayang1Large: {
+    width: "120px",
+    height: "160px",
+    marginBottom: "1rem",
+  },
+  weFoundLove: {
+    color: "#caaa91",
+    fontSize: "1.4rem",
+    marginBottom: "1.4rem",
+    fontWeight: "bold",
+    fontFamily: "Playfair Display",
+  },
+  arRumText: {
+    color: "#caaa91",
+    fontSize: "13px",
+    marginBottom: "1.4rem",
+    fontFamily: "Roboto",
+  },
+  arRumAyat: {
+    color: "#caaa91",
+    marginBottom: "2rem",
+    fontSize: "14px",
+    fontFamily: "Playfair Display",
+  },
+  section3Bg4: {
+    height: "50rem",
+    width: "100%",
+    backgroundPosition: "center",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: "0 1rem",
+    backgroundSize: "cover",
+  },
+  roundedCard2: {
+    backgroundColor: "#e6cebe",
+    width: "23rem",
+    height: "48rem",
+    borderRadius: "14rem",
+    border: "10px solid #59362b",
+    color: "#593022",
+  },
+  brideGroom: {
+    fontSize: "2rem",
+    marginBottom: "1.4rem",
+    fontWeight: "bold",
+    fontFamily: "Playfair Display",
+  },
+  wasallam: {
+    fontSize: "14px",
+    marginBottom: "1.4rem",
+    fontFamily: "Roboto",
+  },
+  brideName: {
+    fontSize: "3rem",
+    fontFamily: "Marck Script",
+    fontWeight: "bold",
+  },
+  familyText: {
+    fontSize: "1rem",
+    fontFamily: "Playfair Display",
+  },
+  andSign: {
+    fontSize: "5rem",
+    fontFamily: "Marck Script",
+    fontWeight: "bold",
+  },
+  section3BgBrownLarge: {
+    height: "70rem",
+    width: "100%",
+    backgroundPosition: "center",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: "0 1rem",
+    backgroundColor: "#5c3e33",
+  },
+  eventCard: {
+    width: "25rem",
+    height: "33rem",
+    borderRadius: "1rem",
+    marginBottom: "2rem",
+    marginTop: "2rem",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    textAlign: "center",
+    padding: "0 1.5rem",
+    backgroundSize: "cover",
+  },
+  ringImg: {
+    width: "90px",
+    height: "70px",
+    marginBottom: "0.5rem",
+  },
+  akadTitle: {
+    color: "#613d34",
+    fontSize: "1.8rem",
+    marginBottom: "0.5rem",
+    fontWeight: "bold",
+  },
+  eventDate: {
+    color: "#694c42",
+    fontSize: "1.4rem",
+    marginBottom: "0.5rem",
+    fontWeight: "600",
+    fontFamily: "Playfair Display",
+  },
+  eventTime: {
+    color: "#6e5448",
+    fontSize: "1.1rem",
+    marginBottom: "5rem",
+    fontWeight: "600",
+    fontFamily: "Roboto",
+  },
+  eventLocationTitle: {
+    color: "#61453e",
+    fontSize: "14px",
+    marginBottom: "0.5rem",
+    fontWeight: "bold",
+    fontFamily: "Playfair Display",
+  },
+  eventLocation: {
+    color: "#80685c",
+    fontSize: "14px",
+    marginBottom: "0.5rem",
+  },
+  openMapsBtn: {
+    backgroundColor: "#8b6448",
+    color: "#ffffff",
+    padding: "0.5rem 1rem",
+    borderRadius: "1rem",
+    fontSize: "1rem",
+    textDecoration: "none",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: "2rem",
+  },
+  countdownSection: {
+    height: "20rem",
+    width: "100%",
+    backgroundColor: "#e6cbba",
+    backgroundPosition: "center",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: "0 1rem",
+  },
+  countdownTitle: {
+    color: "#613d34",
+    fontSize: "2rem",
+    marginBottom: "1.5rem",
+    fontWeight: "bold",
+    fontFamily: "Marck Script",
+  },
+  saveCalendarBtn: {
+    backgroundColor: "#543022",
+    color: "#ffffff",
+    padding: "0.8rem 0.4rem",
+    borderRadius: "5rem",
+    fontSize: "0.9rem",
+    textDecoration: "none",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: "2rem",
+    marginTop: "2rem",
+  },
+  ourMomentSection: {
+    width: "100%",
+    backgroundColor: "#e6cbba",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "flex-start",
+    padding: "2rem 1rem",
+  },
+  ourMomentTitle: {
+    fontSize: "3rem",
+    marginBottom: "1rem",
+    color: "#593528",
+    marginLeft: "8rem",
+    fontWeight: "bold",
+    fontFamily: "Marck Script",
+  },
+  imageGrid: {
+    display: "grid",
+    gridTemplateColumns: "repeat(3, 1fr)",
+    gap: "0.5rem",
+    width: "100%",
+    maxWidth: "425px",
+    gridAutoRows: "150px",
+  },
+  imgLandscape: {
+    gridColumn: "span 2",
+  },
+  imgPortrait: {
+    gridRow: "span 2",
+  },
+  imageStyle: {
+    width: "100%",
+    height: "100%",
+    objectFit: "cover",
+    borderRadius: "0.5rem",
+  },
+  weddingGiftSection: {
+    height: "25rem",
+    width: "100%",
+    backgroundColor: "#e6cbba",
+    backgroundPosition: "center",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: "0 1rem",
+  },
+  weddingGiftTitle: {
+    color: "#6e4f40",
+    fontSize: "2.4rem",
+    marginBottom: "0.6rem",
+    fontWeight: "bold",
+    fontFamily: "Marck Script",
+  },
+  giftText: {
+    color: "#6e4f40",
+    fontSize: "14px",
+    marginBottom: "1.4rem",
+    fontWeight: "600",
+    fontFamily: "Roboto",
+  },
+  cardContainer: {
+    width: "22.2rem",
+    height: "14rem",
+    backgroundSize: "cover",
+  },
+  bniLogo: {
+    width: "100px",
+    marginTop: "1.5rem",
+    marginLeft: "14rem",
+  },
+  accountInfo: {
+    marginTop: "5.5rem",
+    marginRight: "12rem",
+    position: "relative",
+  },
+  accountNumber: {
+    fontSize: "1.3rem",
+    marginBottom: "0.4rem",
+    fontWeight: "bold",
+  },
+  accountName: {
+    fontSize: "1.3rem",
+    fontWeight: "400",
+  },
+  copyBtn: {
+    position: "absolute",
+    top: "1rem",
+    left: "15rem",
+    backgroundColor: "#969490",
+    color: "#fff",
+    padding: "0.5rem 1.5rem",
+    borderRadius: "0.3rem",
+    fontSize: "0.9rem",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  bestWishesSection: {
+    height: "40rem",
+    width: "100%",
+    backgroundColor: "#5c3e33",
+    backgroundPosition: "center",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: "0 1rem",
+  },
+  bestWishesTitle: {
+    color: "#ccaf8b",
+    fontSize: "3.6rem",
+    marginBottom: "0.4rem",
+    fontFamily: "Marck Script",
+    fontWeight: "bold",
+  },
+  bestWishesText: {
+    color: "#ccaf8b",
+    fontSize: "15px",
+    marginBottom: "0.8rem",
+    fontFamily: "Roboto",
+  },
+  form: {
+    display: "flex",
+    flexDirection: "column",
+    backgroundColor: "#ffffff",
+    padding: "1rem",
+    borderRadius: "0.5rem",
+    width: "100%",
+    maxWidth: "420px",
+    margin: "0 auto",
+    marginBottom: "1.2rem",
+  },
+  formInput: {
+    width: "100%",
+    border: "1px solid #ccc",
+    borderRadius: "0.3rem",
+    padding: "0.5rem 0.8rem",
+    marginBottom: "0.8rem",
+    fontSize: "0.9rem",
+  },
+  formTextarea: {
+    width: "100%",
+    border: "1px solid #ccc",
+    borderRadius: "0.3rem",
+    padding: "0.5rem 0.8rem",
+    marginBottom: "0.8rem",
+    fontSize: "0.9rem",
+    height: "6rem",
+    resize: "none",
+  },
+  formBtnContainer: {
+    display: "flex",
+    justifyContent: "flex-end",
+  },
+  sendBtn: {
+    backgroundColor: "#5c3e33",
+    color: "#fff",
+    padding: "0.5rem 1.5rem",
+    borderRadius: "0.3rem",
+    fontSize: "0.9rem",
+  },
+  footerSection: {
+    width: "100%",
+    height: "40rem",
+    backgroundPosition: "center",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: "0 1rem",
+    backgroundSize: "cover",
+  },
+  footerText: {
+    color: "#6e4f40",
+    fontSize: "14px",
+    marginBottom: "0.5rem",
+    fontWeight: "600",
+    fontFamily: "Roboto",
+  },
+  footerTitle: {
+    color: "#593a2b",
+    marginBottom: "0.5rem",
+    fontSize: "1.2rem",
+    fontFamily: "Playfair Display",
+  },
+  coupleName: {
+    color: "#4b2a1b",
+    fontSize: "1.4rem",
+    fontWeight: "bold",
+    fontFamily: "Playfair Display",
+  },
+  copyrightSection: {
+    height: "10rem",
+    width: "100%",
+    backgroundColor: "#5c3e33",
+    backgroundPosition: "center",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: "0 1rem",
+  },
+  copyrightTitle: {
+    color: "#fff",
+    fontSize: "1.2rem",
+    marginBottom: "0.8rem",
+    fontWeight: "bold",
+  },
+  copyrightText: {
+    color: "#fff",
+    fontSize: "0.9rem",
+  },
+};
+
+// Media queries to make it responsive
+const responsiveStyles = `
+  @media (max-width: 480px) {
+    .responsive-card {
+      width: 90%;
+      height: auto;
+      padding: 1rem;
+    }
+    .responsive-title {
+      font-size: 2rem;
+    }
+    .responsive-text {
+      font-size: 12px;
+    }
+    .responsive-grid {
+      grid-template-columns: repeat(2, 1fr);
+      grid-auto-rows: 120px;
+    }
+    .responsive-wayang-large {
+        width: 100px;
+        height: 100px;
+    }
+    .responsive-ml {
+      margin-left: 0;
+      text-align: center;
+    }
+  }
+`;
+
+// Insert the CSS into the document head
+const styleSheet = document.createElement("style");
+styleSheet.innerText = responsiveStyles;
+document.head.appendChild(styleSheet);
 
 export default function App() {
   const section1Ref = useRef(null);
@@ -36,6 +623,7 @@ export default function App() {
   const btnRef = useRef(null);
   const wayang1Ref = useRef(null);
   const wayang2Ref = useRef(null);
+  const audioRef = useRef(null);
 
   const [guestName, setGuestName] = useState("Fulan");
 
@@ -91,6 +679,12 @@ export default function App() {
         section2Ref.current.style.display = "none";
         section3Ref.current.style.display = "block";
         window.scrollTo({ top: 0, behavior: "auto" }); // pindah ke section 3
+        // Mulai putar musik
+        if (audioRef.current) {
+          audioRef.current.play().catch((err) => {
+            console.log("Autoplay error:", err);
+          });
+        }
         const children = section3Ref.current.querySelectorAll(
           "#div, #img, #text, #form"
         );
@@ -142,76 +736,39 @@ export default function App() {
   }, []);
 
   return (
-    <div className="w-[463px] max-w-md min-h-screen mx-auto bg-white overflow-x-hidden relative scroll-smooth">
+    <div style={styles.container}>
+      <audio ref={audioRef} src={music} loop />
+
       {/* Section 1 */}
       <section
         ref={section1Ref}
-        className="absolute top-0 left-0 w-full h-screen  bg-center flex flex-col items-center justify-center px-4 text-center z-20"
-        style={{ backgroundImage: `url(${bg1})`, backgroundSize: "cover" }}
+        style={{ ...styles.section1, backgroundImage: `url(${bg1})` }}
       >
         <img
           src={wayang1}
-          className="mt-[7rem] mx-auto"
+          style={styles.wayang1}
           alt=""
           width="80"
           height="120"
         />
 
-        <h4
-          className="text-[#ffffff] mb-[0.3rem]"
-          style={{ fontFamily: "Playfair Display" }}
-        >
-          THE WEDDING OF
-        </h4>
+        <h4 style={styles.section1Text}>THE WEDDING OF</h4>
 
-        <h2
-          className="text-[2.5rem] font-serif text-[#E6D3A3] mb-[0.3rem]"
-          style={{ fontFamily: "Marck Script", fontWeight: "bold" }}
-        >
-          Santi &amp; Mantri
-        </h2>
+        <h2 style={styles.section1Title}>Santi & Mantri</h2>
 
-        <h4
-          className="text-[#ffffff] mb-[3rem]"
-          style={{ fontFamily: "Playfair Display" }}
-        >
-          MINGGU, 21 SEPTEMBER 2025
-        </h4>
+        <h4 style={styles.section1Subtitle}>MINGGU, 21 SEPTEMBER 2025</h4>
 
-        <div className="text-center mb-6">
-          <p
-            className="text-[#ffffff]"
-            style={{ fontFamily: "Playfair Display" }}
-          >
-            Kepada Yth:
-          </p>
-          <p
-            className="text-[#ffffff] mb-[0.4rem]"
-            style={{ fontFamily: "Playfair Display" }}
-          >
+        <div style={{ textAlign: "center", marginBottom: "1.5rem" }}>
+          <p style={styles.toText}>Kepada Yth:</p>
+          <p style={{ ...styles.toText, marginBottom: "0.4rem" }}>
             Bpk/Ibu/Saudara/i
           </p>
-          <p
-            className="text-[1.6rem] font-medium text-[#d6b183] mb-[0.4rem]"
-            style={{ fontWeight: "600", fontFamily: "Marck Script" }}
-          >
-            {guestName}
-          </p>
-          <p
-            className="text-[#ffffff] mb-[1rem]"
-            style={{ fontFamily: "Playfair Display" }}
-          >
-            Di Tempat
-          </p>
+          <p style={styles.guestName}>{guestName}</p>
+          <p style={{ ...styles.toText, marginBottom: "1rem" }}>Di Tempat</p>
         </div>
 
-        <a
-          href="#"
-          ref={btnRef}
-          style={{ fontFamily: "Roboto" }}
-          className="bg-[#E6D3A3] px-[2.6rem] py-[0.3rem] rounded-[0.3rem] text-[1rem] no-underline flex justify-center items-center text-[#5c3e33]"
-        >
-          <FaEnvelopeOpenText className="mr-[0.5rem]" />
+        <a href="#" ref={btnRef} style={styles.button}>
+          <FaEnvelopeOpenText style={{ marginRight: "0.5rem" }} />
           Buka Undangan
         </a>
       </section>
@@ -219,15 +776,14 @@ export default function App() {
       {/* Section 2 */}
       <section
         ref={section2Ref}
-        className="absolute top-0 left-0 w-full h-screen  bg-center flex flex-col items-center justify-center text-center z-10"
-        style={{ backgroundImage: `url(${bg2})`, backgroundSize: "cover" }}
+        style={{ ...styles.section2, backgroundImage: `url(${bg2})` }}
       >
-        <div className="relative w-[220px] h-[50px] mb-[15rem]">
+        <div style={styles.section2WayangContainer}>
           <img
             ref={wayang1Ref}
             src={wayang1}
             alt=""
-            className="absolute top-0 left-0"
+            style={styles.wayangImage}
             width="220"
             height="50"
           />
@@ -235,7 +791,7 @@ export default function App() {
             ref={wayang2Ref}
             src={wayang2}
             alt=""
-            className="absolute top-0 left-0 opacity-70"
+            style={{ ...styles.wayangImage, ...styles.wayang2 }}
             width="220"
             height="50"
           />
@@ -245,68 +801,26 @@ export default function App() {
       {/* Section 3 (scrollable) */}
       <section
         ref={section3Ref}
-        style={{ display: "none" }}
-        className="relative w-full  bg-center flex flex-col items-center justify-start text-center"
+        style={{ ...styles.section3, display: "none" }}
       >
-        <div
-          style={{ backgroundImage: `url(${bg3})`, backgroundSize: "cover" }}
-          className="h-screen w-full  bg-center flex flex-col items-center justify-center px-4 text-center"
-        >
-          <div
-            className="bg-[#e6cebe] w-[23rem] h-[40rem] rounded-[14rem] border-[10px] border-[#59362b] text-[#593629]"
-            id="div"
-          >
-            <div className="flex flex-col items-center justify-center h-full text-center px-6">
-              <h5
-                className="text-[1rem]"
-                style={{ fontFamily: "Playfair Display" }}
-              >
-                THE WEDDING OF
-              </h5>
-              <h1
-                className="text-[3rem]"
-                style={{ fontFamily: "Marck Script", fontWeight: "bold" }}
-              >
-                Santi
-              </h1>
-              <h3 className="text-[2rem]">&amp;</h3>
-              <h1
-                className="text-[3rem]"
-                style={{ fontFamily: "Marck Script", fontWeight: "bold" }}
-              >
-                Mantri
-              </h1>
-              <h5
-                className="text-[1rem]"
-                style={{ fontFamily: "Playfair Display" }}
-              >
-                MINGGU, 21 SEPTEMBER 2025
-              </h5>
+        <div style={{ ...styles.section3Bg, backgroundImage: `url(${bg3})` }}>
+          <div style={styles.roundedCard} id="div">
+            <div style={styles.cardContent}>
+              <h5 style={styles.cardH5}>THE WEDDING OF</h5>
+              <h1 style={styles.cardH1}>Santi</h1>
+              <h3 style={styles.cardH3}>&</h3>
+              <h1 style={styles.cardH1}>Mantri</h1>
+              <h5 style={styles.cardH5}>MINGGU, 21 SEPTEMBER 2025</h5>
             </div>
           </div>
         </div>
 
-        <div className="h-[35rem] w-full  bg-center flex flex-col items-center justify-center px-4 bg-[#5c3e33]">
-          <img
-            src={wayang1}
-            alt=""
-            width="140"
-            height="120"
-            className="mb-[1rem]"
-            id="img"
-          />
-          <h2
-            className="text-[#caaa91] text-[1.4rem] mb-[1.4rem]"
-            id="text"
-            style={{ fontWeight: "bold", fontFamily: "Playfair Display" }}
-          >
+        <div style={styles.section3BgBrown}>
+          <img src={wayang1} alt="" style={styles.wayang1Large} id="img" />
+          <h2 style={styles.weFoundLove} id="text">
             WE FOUND LOVE
           </h2>
-          <p
-            className="text-[#caaa91] text-[13px] mb-[1.4rem]"
-            id="text"
-            style={{ fontFamily: "Roboto" }}
-          >
+          <p style={styles.arRumText} id="text">
             "Dan di antara tanda-tanda kekuasaan-Nya diciptakan-Nya
             <br />
             untukmu pasangan hidup dari jenismu sendiri supaya kamu dapat
@@ -317,36 +831,19 @@ export default function App() {
             <br />
             bagi orang-orang yang berpikir."
           </p>
-          <p
-            className="text-[#caaa91] mb-[2rem] text-[14px]"
-            id="text"
-            style={{ fontFamily: "Playfair Display" }}
-          >
+          <p style={styles.arRumAyat} id="text">
             QS.Ar-Rum Ayat 21
           </p>
         </div>
 
-        <div
-          className="h-[50rem] w-full  bg-center flex flex-col items-center justify-center px-4"
-          style={{ backgroundImage: `url(${bg4})`, backgroundSize: "cover" }}
-        >
-          <div
-            className="bg-[#e6cebe] w-[23rem] h-[48rem] rounded-[14rem] border-[10px] border-[#59362b] text-[#593022]"
-            id="div"
-          >
-            <div className="flex flex-col items-center justify-center h-full text-center px-6">
-              <h2
-                className="text-[2rem] mb-[1.4rem] font-bold"
-                style={{ fontFamily: "Playfair Display" }}
-              >
-                BRIDE &amp;
-                <br />
+        <div style={{ ...styles.section3Bg4, backgroundImage: `url(${bg4})` }}>
+          <div style={styles.roundedCard2} id="div">
+            <div style={styles.cardContent}>
+              <h2 style={styles.brideGroom}>
+                BRIDE &<br />
                 GROOM
               </h2>
-              <p
-                className="text-[14px] mb-[1.4rem]"
-                style={{ fontFamily: "Roboto" }}
-              >
+              <p style={styles.wasallam}>
                 Assalamu'alaikum Warahmatullahi Wabarakatuh
                 <br />
                 Dengan mohon rahmat dan ridho Allah Swt. kami
@@ -355,97 +852,54 @@ export default function App() {
                 <br />
                 menghadiri acara pernikahan putra-putri kami:
               </p>
-              <h1
-                className="text-[3rem]"
-                style={{ fontFamily: "Marck Script", fontWeight: "bold" }}
-              >
-                Santi
-              </h1>
+              <h1 style={styles.brideName}>Santi</h1>
               <h3
-                className="text-[1.2rem]"
-                style={{ fontFamily: "Playfair Display", fontWeight: "500" }}
+                style={{
+                  ...styles.familyText,
+                  fontSize: "1.2rem",
+                  fontWeight: "500",
+                }}
               >
                 Tri Susanti
               </h3>
-              <p
-                className="text-[1rem]"
-                style={{ fontFamily: "Playfair Display" }}
-              >
+              <p style={styles.familyText}>
                 Putri Ketiga dari
                 <br />
-                Bpk. Kamilin &amp; Ibu Endang Kurniati
+                Bpk. Kamilin & Ibu Endang Kurniati
               </p>
-              <h1
-                className="text-[5rem]"
-                style={{ fontFamily: "Marck Script", fontWeight: "bold" }}
-              >
-                &amp;
-              </h1>
-              <h1
-                className="text-[3rem]"
-                style={{ fontFamily: "Marck Script", fontWeight: "bold" }}
-              >
-                Mantri
-              </h1>
+              <h1 style={styles.andSign}>&</h1>
+              <h1 style={styles.brideName}>Mantri</h1>
               <h3
-                className="text-[1.2rem]"
-                style={{ fontFamily: "Playfair Display", fontWeight: "500" }}
+                style={{
+                  ...styles.familyText,
+                  fontSize: "1.2rem",
+                  fontWeight: "500",
+                }}
               >
                 Mantri
               </h3>
-              <p
-                className="text-[1rem] mb-[3rem]"
-                style={{ fontFamily: "Playfair Display" }}
-              >
+              <p style={{ ...styles.familyText, marginBottom: "3rem" }}>
                 Putra Ketiga dari
                 <br />
-                Bpk. Miit Tonin &amp; Ibu Puah
+                Bpk. Miit Tonin & Ibu Puah
               </p>
             </div>
           </div>
         </div>
 
-        <div className="h-[70rem] w-full  bg-center flex flex-col items-center justify-center px-4 bg-[#5c3e33]">
+        <div style={styles.section3BgBrownLarge}>
           <div
-            className=" w-[25rem] h-[33rem] rounded-[1rem] mb-[2rem] flex flex-col items-center justify-center text-center px-6"
-            style={{
-              backgroundImage: `url(${bg6})`,
-              backgroundSize: "cover",
-            }}
+            style={{ ...styles.eventCard, backgroundImage: `url(${bg6})` }}
             id="div"
           >
-            <img
-              src={cincin}
-              alt=""
-              width={90}
-              height={70}
-              className="mb-[0.5rem]"
-            />
-            <h1
-              className="text-[#613d34] text-[1.8rem] mb-[0.5rem]"
-              style={{ fontWeight: "bold" }}
-            >
-              AKAD NIKAH
-            </h1>
-            <h3
-              className="text-[#694c42] text-[1.4rem] mb-[0.5rem]"
-              style={{ fontWeight: "600", fontFamily: "Playfair Display" }}
-            >
-              Minggu, 21 September 2025
-            </h3>
-            <h5
-              className="text-[#6e5448] text-[1.1rem] mb-[5rem]"
-              style={{ fontWeight: "600", fontFamily: "Roboto" }}
-            >
-              Pukul: 09.00 WIB
-            </h5>
-            <h5
-              className="text-[#61453e] text-[14px] mb-[0.5rem]"
-              style={{ fontWeight: "bold", fontFamily: "Playfair Display" }}
-            >
+            <img src={cincin} alt="" style={styles.ringImg} />
+            <h1 style={styles.akadTitle}>AKAD NIKAH</h1>
+            <h3 style={styles.eventDate}>Minggu, 21 September 2025</h3>
+            <h5 style={styles.eventTime}>Pukul: 09.00 WIB</h5>
+            <h5 style={styles.eventLocationTitle}>
               Bertempat dikediaman mempelai wanita
             </h5>
-            <p className="text-[#80685c] text-[14px] mb-[0.5rem]">
+            <p style={styles.eventLocation}>
               Rw. Panjang, Kecamatan Bojonggede,
               <br />
               Kabupaten Bogor, Jawa Barat 16920
@@ -453,44 +907,22 @@ export default function App() {
             <a
               href="https://maps.app.goo.gl/NqNUfkEM6TjamRNU9"
               target="_blank"
-              className="bg-[#8b6448] text-[#ffffff] px-[1rem] py-[0.5rem] rounded-[1rem] text-[1rem] no-underline flex justify-center items-center mb-[2rem]"
+              style={styles.openMapsBtn}
             >
-              <FaMapMarkerAlt className="mr-[0.5rem]" /> OPEN MAPS
+              <FaMapMarkerAlt style={{ marginRight: "0.5rem" }} /> OPEN MAPS
             </a>
           </div>
           <div
-            className="bg-[#e6cebe] w-[25rem] h-[33rem] rounded-[1rem] flex flex-col items-center justify-center text-center px-6"
-            style={{
-              backgroundImage: `url(${bg6})`,
-              backgroundSize: "cover",
-            }}
+            style={{ ...styles.eventCard, backgroundImage: `url(${bg6})` }}
             id="div"
           >
-            <h1
-              className="text-[#613d34] text-[1.8rem] mb-[0.5rem]"
-              style={{ fontWeight: "bold" }}
-            >
-              RESEPSI
-            </h1>
-            <h3
-              className="text-[#694c42] text-[1.4rem] mb-[0.5rem]"
-              style={{ fontWeight: "600", fontFamily: "Playfair Display" }}
-            >
-              Minggu, 21 September 2025
-            </h3>
-            <h5
-              className="text-[#6e5448] text-[1.1rem] mb-[5rem]"
-              style={{ fontWeight: "600", fontFamily: "Roboto" }}
-            >
-              Pukul: 11.00 WIB s.d selesai
-            </h5>
-            <h5
-              className="text-[#61453e] text-[14px] mb-[0.5rem]"
-              style={{ fontWeight: "bold", fontFamily: "Playfair Display" }}
-            >
+            <h1 style={styles.akadTitle}>RESEPSI</h1>
+            <h3 style={styles.eventDate}>Minggu, 21 September 2025</h3>
+            <h5 style={styles.eventTime}>Pukul: 11.00 WIB s.d selesai</h5>
+            <h5 style={styles.eventLocationTitle}>
               Bertempat dikediaman mempelai wanita
             </h5>
-            <p className="text-[#80685c] text-[14px] mb-[0.5rem]">
+            <p style={styles.eventLocation}>
               Rw. Panjang, Kecamatan Bojonggede,
               <br />
               Kabupaten Bogor, Jawa Barat 16920
@@ -498,182 +930,115 @@ export default function App() {
             <a
               href="https://maps.app.goo.gl/NqNUfkEM6TjamRNU9"
               target="_blank"
-              className="bg-[#8b6448] text-[#ffffff] px-[1rem] py-[0.5rem] rounded-[1rem] text-[1rem] no-underline flex justify-center items-center mb-[2rem]"
+              style={styles.openMapsBtn}
             >
-              <FaMapMarkerAlt className="mr-[0.5rem]" /> OPEN MAPS
+              <FaMapMarkerAlt style={{ marginRight: "0.5rem" }} /> OPEN MAPS
             </a>
           </div>
         </div>
 
-        <div className="h-[20rem] w-full bg-center flex flex-col items-center justify-center px-4 bg-[#e6cbba]">
+        <div style={styles.countdownSection}>
           <div id="div">
-            <h2
-              className="text-[#613d34] text-[2rem] mb-[1.5rem]"
-              style={{ fontWeight: "bold", fontFamily: "Marck Script" }}
-            >
-              Counting The Day
-            </h2>
+            <h2 style={styles.countdownTitle}>Counting The Day</h2>
             <Countdown />
             <a
               href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=The+Wedding+of+Santi+%26+Mantri&dates=20250921T020000Z/20250921T050000Z&details=Resepsi+Pernikahan&location=Rw.+Panjang,+Bojonggede,+Bogor"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-[#543022] text-[#ffffff] px-[0.4rem] py-[0.8rem] rounded-[5rem] text-[0.9rem] no-underline flex justify-center items-center mb-[2rem] mt-[2rem]"
+              style={styles.saveCalendarBtn}
             >
-              <FaCalendarPlus className="mr-[0.5rem]" /> SIMPAN DI KALENDER
+              <FaCalendarPlus style={{ marginRight: "0.5rem" }} /> SIMPAN DI
+              KALENDER
             </a>
           </div>
         </div>
 
-        <div className="w-[100%] bg-[#e6cbba] flex flex-col items-[center] justify-[start] px-[1rem] py-[2rem]">
+        <div style={styles.ourMomentSection}>
           <h2
-            className="text-[3rem] mb-[1rem] text-[#593528] ml-[8rem]"
-            style={{ fontWeight: "bold", fontFamily: "Marck Script" }}
+            style={{ ...styles.ourMomentTitle, marginLeft: "8rem" }}
             id="text"
           >
             Our Moment
           </h2>
 
-          <div
-            className="grid grid-cols-3 gap-[0.5rem] w-[100%] max-w-[425px] auto-rows-[150px]"
-            id="div"
-          >
+          <div style={styles.imageGrid} id="div">
             {/* Landscape */}
-            <div className="col-span-[2]">
-              <img
-                src={cewekcowok3}
-                alt=""
-                className="w-[100%] h-[100%] object-cover rounded-[0.5rem]"
-              />
+            <div style={styles.imgLandscape}>
+              <img src={cewekcowok3} alt="" style={styles.imageStyle} />
             </div>
 
             {/* Portraits */}
-            <div className="row-span-[2]">
-              <img
-                src={cowok1}
-                alt=""
-                className="w-[100%] h-[100%] object-cover rounded-[0.5rem]"
-              />
+            <div style={styles.imgPortrait}>
+              <img src={cowok1} alt="" style={styles.imageStyle} />
             </div>
-            <div className="row-span-[2]">
-              <img
-                src={cewekcowok1}
-                alt=""
-                className="w-[100%] h-[100%] object-cover rounded-[0.5rem]"
-              />
+            <div style={styles.imgPortrait}>
+              <img src={cewekcowok1} alt="" style={styles.imageStyle} />
             </div>
-            <div className="row-span-[2]">
-              <img
-                src={cewekcowok2}
-                alt=""
-                className="w-[100%] h-[100%] object-cover rounded-[0.5rem]"
-              />
+            <div style={styles.imgPortrait}>
+              <img src={cewekcowok2} alt="" style={styles.imageStyle} />
             </div>
-            <div className="row-span-[2]">
-              <img
-                src={cewek1}
-                alt=""
-                className="w-[100%] h-[100%] object-cover rounded-[0.5rem]"
-              />
+            <div style={styles.imgPortrait}>
+              <img src={cewek1} alt="" style={styles.imageStyle} />
             </div>
 
             {/* Landscape */}
-            <div className="col-span-[2]">
-              <img
-                src={cewekcowok5}
-                alt=""
-                className="w-[100%] h-[100%] object-cover rounded-[0.5rem]"
-              />
+            <div style={styles.imgLandscape}>
+              <img src={cewekcowok5} alt="" style={styles.imageStyle} />
             </div>
-            <div className="col-span-[2]">
-              <img
-                src={cewekcowok4}
-                alt=""
-                className="w-[100%] h-[100%] object-cover rounded-[0.5rem]"
-              />
+            <div style={styles.imgLandscape}>
+              <img src={cewekcowok4} alt="" style={styles.imageStyle} />
             </div>
           </div>
         </div>
 
-        <div className="h-[25rem] w-full bg-center flex flex-col items-center justify-center px-4 bg-[#e6cbba]">
-          <h2
-            className="text-[#6e4f40] text-[2.4rem] mb-[0.6rem]"
-            id="text"
-            style={{ fontWeight: "bold", fontFamily: "Marck Script" }}
-          >
+        <div style={styles.weddingGiftSection}>
+          <h2 style={styles.weddingGiftTitle} id="text">
             Wedding gift
           </h2>
-          <p
-            className="text-[#6e4f40] text-[14px] mb-[1.4rem]"
-            style={{ fontWeight: "600", fontFamily: "Roboto" }}
-            id="text"
-          >
+          <p style={styles.giftText} id="text">
             Bagi bapak/ibu/saudara/i yang ingin mengirimkan hadiah
             <br />
             pernikahan dapat melalui nomer rekening di bawah ini
           </p>
           <div
-            className="w-[22.2rem] h-[14rem]"
-            style={{ backgroundImage: `url(${card})` }}
+            style={{ ...styles.cardContainer, backgroundImage: `url(${card})` }}
             id="div"
           >
-            <img
-              src={bni}
-              alt=""
-              width={100}
-              className="mt-[1.5rem] ml-[14rem]"
-            />
-            <div className="mt-[5.5rem] mr-[12rem] relative">
-              <h2
-                className="text-[1.3rem] mb-[0.4rem]"
-                style={{ fontWeight: "bold" }}
-              >
-                1910451894
-              </h2>
-              <h2 className="text-[1.3rem]" style={{ fontWeight: "400" }}>
-                Tri Susanti
-              </h2>
+            <img src={bni} alt="" style={styles.bniLogo} />
+            <div style={styles.accountInfo}>
+              <h2 style={styles.accountNumber}>1910451894</h2>
+              <h2 style={styles.accountName}>Tri Susanti</h2>
               <button
                 onClick={() => {
                   navigator.clipboard.writeText("1910451894");
                   alert("Nomor rekening berhasil disalin!");
                 }}
-                className="absolute top-[1rem] left-[15rem] bg-[#969490] text-[#fff] px-[1.5rem] py-[0.5rem] rounded-[0.3rem] text-[0.9rem] flex justify-center items-center"
+                style={styles.copyBtn}
               >
-                <FaCopy className="mr-[0.5rem]" /> Salin
+                <FaCopy style={{ marginRight: "0.5rem" }} /> Salin
               </button>
             </div>
           </div>
         </div>
 
-        <div className="h-[40rem] w-full  bg-center flex flex-col items-center justify-center px-4 bg-[#5c3e33]">
+        <div style={styles.bestWishesSection}>
           <img
             src={wayang1}
             alt=""
-            width={130}
-            height={130}
-            className="mt-[1.2rem]"
+            style={{ ...styles.wayang1Large, marginTop: "1.2rem" }}
             id="img"
           />
-          <h1
-            className="text-[#ccaf8b] text-[3.6rem] mb-[0.4rem]"
-            id="text"
-            style={{ fontFamily: "Marck Script", fontWeight: "bold" }}
-          >
+          <h1 style={styles.bestWishesTitle} id="text">
             Best Wishes
           </h1>
-          <p
-            className="text-[#ccaf8b] text-[15px] mb-[0.8rem]"
-            id="text"
-            style={{ fontFamily: "Roboto" }}
-          >
+          <p style={styles.bestWishesText} id="text">
             Sampaikan do'a dan ucapan terbaik anda
           </p>
           <form
-            action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSd8fpO_H2mBoHtz_J9ODtQZ4SmUDrrMl8FbsDPh-OUMIIGpYg/formResponse" // ganti dengan URL formResponse
+            action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSd8fpO_H2mBoHtz_J9ODtQZ4SmUDrrMl8FbsDPh-OUMIIGpYg/formResponse"
             method="POST"
             target="hidden_iframe"
-            className="flex flex-col bg-[#ffffff] p-[1rem] rounded-[0.5rem] w-[100%] max-w-[420px] mx-[auto] mb-[1.2rem]"
+            style={styles.form}
             id="form"
           >
             {/* Input nama tamu */}
@@ -682,14 +1047,14 @@ export default function App() {
               placeholder="Nama Tamu"
               name="entry.73155143"
               id="nama_tamu"
-              className="w-[100%] border border-[#ccc] rounded-[0.3rem] px-[0.8rem] py-[0.5rem] mb-[0.8rem] text-[0.9rem]"
+              style={styles.formInput}
             />
 
             {/* Select konfirmasi */}
             <select
               name="entry.2128657294"
               id="kehadiran"
-              className="w-[100%] border border-[#ccc] rounded-[0.3rem] px-[0.8rem] py-[0.5rem] mb-[0.8rem] text-[0.9rem]"
+              style={styles.formInput}
             >
               <option value="">Konfirmasi Kehadiran</option>
               <option value="hadir">Hadir</option>
@@ -701,15 +1066,12 @@ export default function App() {
               name="entry.945093395"
               id="ucapan"
               placeholder="Tulis ucapan"
-              className="w-[100%] border border-[#ccc] rounded-[0.3rem] px-[0.8rem] py-[0.5rem] mb-[0.8rem] text-[0.9rem] h-[6rem] resize-none"
+              style={styles.formTextarea}
             ></textarea>
 
             {/* Tombol kirim */}
-            <div className="flex justify-[end]">
-              <button
-                type="submit"
-                className="bg-[#5c3e33] text-[#fff] px-[1.5rem] py-[0.5rem] rounded-[0.3rem] text-[0.9rem]"
-              >
+            <div style={styles.formBtnContainer}>
+              <button type="submit" style={styles.sendBtn}>
                 Kirim
               </button>
             </div>
@@ -719,44 +1081,26 @@ export default function App() {
         </div>
 
         <div
-          className="w-full h-[40rem] bg-center flex flex-col items-center justify-center px-4"
-          style={{ backgroundImage: `url(${bg5})`, backgroundSize: "cover" }}
+          style={{ ...styles.footerSection, backgroundImage: `url(${bg5})` }}
         >
-          <p
-            className="text-[#6e4f40] text-[14px] mb-[0.5rem]"
-            style={{ fontWeight: "600", fontFamily: "Roboto" }}
-            id="text"
-          >
+          <p style={styles.footerText} id="text">
             Merupakan suatu kebahagian dan kehormatan bagi kami, apabila
             <br />
             Bapak/Ibu/Saudara/i, berkenan hadir dan memberikan do'a restu
             <br />
             kepada kami
           </p>
-          <h2
-            className="text-[#593a2b] mb-[0.5rem] text-[1.2rem]"
-            id="text"
-            style={{ fontFamily: "Playfair Display" }}
-          >
+          <h2 style={styles.footerTitle} id="text">
             KAMI YANG BERBAHAGIA
           </h2>
-          <h1
-            className="text-[#4b2a1b] text-[1.4rem]"
-            style={{ fontWeight: "bold", fontFamily: "Playfair Display" }}
-            id="text"
-          >
-            Santi &amp; Mantri
+          <h1 style={styles.coupleName} id="text">
+            Santi & Mantri
           </h1>
         </div>
 
-        <div className="h-[10rem] w-full  bg-center flex flex-col items-center justify-center px-4 bg-[#5c3e33]">
-          <h2
-            className="text-[#fff] text-[1.2rem] mb-[0.8rem]"
-            style={{ fontWeight: "bold" }}
-          >
-            DCode
-          </h2>
-          <p className="text-[#fff] text-[0.9rem]">Made with ❤️ by DCode</p>
+        <div style={styles.copyrightSection}>
+          <h2 style={styles.copyrightTitle}>DCode</h2>
+          <p style={styles.copyrightText}>Made with ❤️ by DCode</p>
         </div>
       </section>
     </div>
