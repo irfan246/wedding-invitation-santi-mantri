@@ -1047,9 +1047,13 @@ export default function App() {
             Sampaikan do'a dan ucapan terbaik anda
           </p>
           <form
+            onSubmit={() => {
+              setTimeout(() => {
+                window.location.reload(); // reload halaman setelah submit
+              }, 500); // kasih jeda biar data terkirim dulu
+            }}
             action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSd8fpO_H2mBoHtz_J9ODtQZ4SmUDrrMl8FbsDPh-OUMIIGpYg/formResponse"
             method="POST"
-            target="hidden_iframe"
             style={styles.form}
             id="form"
           >
@@ -1088,8 +1092,6 @@ export default function App() {
               </button>
             </div>
           </form>
-
-          <iframe name="hidden_iframe" style={{ display: "none" }}></iframe>
         </div>
 
         <div
